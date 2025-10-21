@@ -1,0 +1,32 @@
+.preview {
+  margin: 0 auto;
+  margin-top: 70px;
+  width: 1130px;
+  height: 30px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.preview h1 {
+  font-size: 58px;
+  line-height: 64px;
+  letter-spacing: 0.2px;
+  margin-bottom: 24px;
+}
+
+.preview p {
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.2px;
+  margin-bottom: 29px;
+}
+
+.overflow_text {
+  height: 60px;
+}
+
+.preview .preiew_description {
+  margin-top: 56px;
+  max-width: 525px;
+}

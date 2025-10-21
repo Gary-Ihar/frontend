@@ -1,0 +1,36 @@
+.logo {
+  display: inline;
+  font-size: 37px;
+  margin-right: 40px;
+}
+
+.header {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 1130px;
+  justify-content: space-between;
+}
+
+nav {
+  display: inline;
+}
+
+.menu {
+  list-style-type: none;
+  width: fit-content;
+  display: flex;
+}
+
+.menu li {
+  margin-right: 24px;
+}
+
+.demo_button {
+  background-color: #0070a0;
+  color: #ffffff;
+}
+
+.sign_in_button {
+  background-color: transparent;
+  color: #0070a0;
+}
