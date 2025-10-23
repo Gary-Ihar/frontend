@@ -78,6 +78,12 @@
   gap: 5px;
 }
 
+.but_sig_2::after {
+  content: url("../icons/right-arrow-backup-2-svgrepo-com.svg");
+  display: block;
+  font-size: 16px;
+}
+
 .img_but {
   height: 17.52px;
   width: 8.34px;
