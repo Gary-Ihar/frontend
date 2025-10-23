@@ -1,0 +1,42 @@
+.block_5 {
+  margin: 0 auto;
+  margin-top: 120.39px;
+  width: 1130px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.block_5 h3 {
+  font-size: 41px;
+  line-height: 50.4px;
+  letter-spacing: 0.5px;
+  font-family: "My Fraunces", sans-serif;
+  font-weight: 410;
+}
+
+.block_5_title {
+  flex-shrink: 0;
+  width: 260px;
+  margin-right: 98px;
+}
+
+.block_5_content {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: flex-end;
+  font-family: "My Inter", sans-serif;
+  font-weight: 100;
+}
+
+.block_5_content div {
+  flex: 1;
+}
+
+.content_img_2 {
+  margin-left: 32px;
+}

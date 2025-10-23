@@ -1,0 +1,29 @@
+.block_2 {
+  margin: 0 auto;
+  margin-top: 120px;
+  width: 1130px;
+  height: 96.81px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.block_2 .block_2_description {
+  width: 100%;
+}
+
+.block_2 p {
+  text-align: center;
+  font-size: 24px;
+  line-height: 37.5px;
+  letter-spacing: 0.2px;
+  font-family: "My Inter", sans-serif;
+  font-weight: 140;
+}
+
+.logo_partners {
+  display: flex;
+  gap: 61px;
+  max-height: 33px;
+}

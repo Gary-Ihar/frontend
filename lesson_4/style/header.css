@@ -1,0 +1,89 @@
+.header {
+  margin: 0 auto;
+  margin-top: 19.5px;
+  width: 1130px;
+  justify-content: space-between;
+}
+
+.logo {
+  display: inline;
+  font-size: 37px;
+  margin-right: 38.69px;
+  cursor: pointer;
+}
+
+.menu {
+  list-style-type: none;
+  width: fit-content;
+  display: flex;
+}
+
+.menu li {
+  color: #33383f;
+  font-family: "My Inter", sans-serif;
+  margin-right: 24px;
+}
+
+.menu li:last-child {
+  margin-right: 0px;
+}
+
+.menu li input:checked {
+  margin: 15px;
+}
+
+.menu li:hover {
+  color: #959eaa;
+}
+.but_sign {
+  background-color: transparent;
+  color: #0070a0;
+}
+
+.but_sign:hover {
+  color: #2dbbf8;
+  filter: brightness(0) saturate(100%) invert(64%) sepia(63%) saturate(3536%)
+    hue-rotate(177deg) brightness(99%) contrast(104%);
+}
+
+.but_demo {
+  background-color: #0070a0;
+  transition: background-color 0.3s ease;
+  color: #fff;
+  height: 36px;
+}
+
+.but_demo:hover {
+  background-color: #2dbbf8;
+}
+
+.text_1 {
+  line-height: 24px;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+}
+
+.text_but {
+  font-family: "My Inter", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 27px;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.but_sig_2 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.img_but {
+  height: 17.52px;
+  width: 8.34px;
+}
+
+.but_2 {
+  display: flex;
+  gap: 24px;
+}

@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "My Inter";
+  src: url("../fonts/Inter.woff2") format("woff2"),
+    url("../fonts/Inter.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "My Fraunces";
+  src: url("../fonts/Fraunces.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "My Bitcount";
+  src: url("../fonts/Bitcount.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+}
+
+.inter-1 {
+  font-family: "My Inter";
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+.fraunces-1 {
+  font-family: "My Fraunces";
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flex_center {
+  display: flex;
+  align-items: center;
+}
+
+.base_but {
+  padding: 6px 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.base_but:hover {
+  border: 1px solid #000;
+}

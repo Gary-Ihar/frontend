@@ -1,0 +1,98 @@
+.block_4 {
+  margin: 0 auto;
+  margin-top: 200px;
+  width: 1130px;
+}
+
+.block_4_all {
+  background-color: #f7f9fa;
+  width: 100%;
+}
+
+.block_4_title {
+  width: 650px;
+  padding-top: 80.39px;
+}
+
+.block_4 h2 {
+  font-size: 42px;
+  line-height: 50.4px;
+  letter-spacing: 0.2px;
+  font-weight: 140;
+  font-family: "My Fraunces", sans-serif;
+  font-weight: 420;
+}
+
+.faq {
+  width: 485.83px;
+  margin-right: 139.17px;
+}
+
+details {
+  border-bottom: 1px solid #c2cdd8;
+  border-top: 1px solid #c2cdd8;
+  padding: 10px 0;
+  width: 449.83px;
+  margin-top: 1px;
+}
+
+details:first-child {
+  border-top: 1px solid #c2cdd8;
+}
+
+summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 21px;
+  line-height: 25.2px;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  color: #c2cdd8;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-family: "My Fraunces", sans-serif;
+  font-weight: 420;
+}
+
+summary:hover {
+  color: #9c9c9d;
+}
+
+details[open] summary {
+  color: #1f1f1f;
+}
+
+details p {
+  margin-top: 18px;
+  list-style: none;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  width: 363px;
+  padding-left: 60px;
+  font-family: "My Inter", sans-serif;
+  font-weight: 100;
+}
+
+summary::after {
+  content: "";
+  background: url("../img/Down.svg") no-repeat center;
+  position: absolute;
+  right: 0;
+  transition: transform 0.3s;
+  color: #626a72;
+  width: 20px;
+  height: 20px;
+}
+
+details[open] summary::after {
+  transform: rotate(180deg);
+  /*background-image: url("../img/Down.svg");  ← замени на свою картинку */
+}
+
+.sum_img {
+  margin-right: 16px;
+  margin-left: 12px;
+}

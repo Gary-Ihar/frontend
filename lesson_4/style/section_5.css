@@ -1,0 +1,99 @@
+.block_6 {
+  margin: 0 auto;
+  margin-top: 119.61px;
+  width: 100%;
+  background-color: #0070a0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.block_6_main {
+  display: flex;
+  width: 1130px;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+
+.block_6 h3 {
+  font-size: 42px;
+  line-height: 50.4px;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  color: #fff;
+  font-family: "My Fraunces", sans-serif;
+  font-weight: 410;
+}
+
+.block_6 p {
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  color: #fff;
+  margin-top: 15px;
+  font-family: "My Inter", sans-serif;
+  font-weight: 100;
+}
+
+.block_6 li {
+  font-size: 17px;
+  line-height: 21.6px;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  color: #fff;
+  margin-top: 20px;
+  font-family: "My Inter", sans-serif;
+  font-weight: 100;
+}
+.block_6 .block_6_description {
+  margin-top: 80.88px;
+  max-width: 501px;
+  margin-left: auto;
+}
+
+.block_6_menu {
+  list-style: none;
+  padding-left: 0;
+}
+
+.block_6_menu li {
+  position: relative;
+  padding-left: 26px;
+}
+
+.block_6_menu li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/li.svg") no-repeat center;
+}
+
+.block_6_menu li:last-child {
+  margin-bottom: 0;
+}
+
+.block_6_but {
+  background-color: transparent;
+  color: #fff;
+  margin-top: 24.13px;
+  font-family: "My Inter", sans-serif;
+  font-weight: 100;
+}
+
+.block_6_but:hover {
+  color: #2dbbf8;
+}
+
+.block_6 img {
+  width: 382px;
+  padding: 80px 0 96px;
+}
+
+.block_7 {
+  margin: 0 auto;
+  margin-top: 200px;
+  width: 1130px;
+}

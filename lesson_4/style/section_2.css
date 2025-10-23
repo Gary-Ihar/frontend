@@ -1,0 +1,61 @@
+.block_3 {
+  margin: 0 auto;
+  margin-top: 160px;
+  width: 1130px;
+  height: 250px;
+
+  display: flex;
+  justify-content: space-between;
+}
+.block_3_main {
+  width: 355px;
+  height: 250px;
+}
+
+.block_3_1 {
+  background-color: #faea73;
+}
+
+.block_3_2 {
+  background-color: #cceff6;
+}
+
+.block_3_3 {
+  background-color: #f7cedc;
+}
+
+.block_3_gap {
+  gap: 33px;
+}
+
+.block_3_text_1 {
+  margin-top: 5px;
+  font-size: 25px;
+  line-height: 31.25px;
+  letter-spacing: 0.2px;
+  font-family: "My Fraunces", sans-serif;
+  font-weight: 410;
+}
+
+.block_3_text_2 {
+  margin-top: 13px;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  font-family: "My Inter", sans-serif;
+  font-weight: 100;
+}
+
+.content_main {
+  display: flex;
+  align-items: center;
+}
+
+.content_text {
+  margin-left: 32px;
+}
+
+.content_img {
+  margin-left: 32px;
+  margin-top: 32px;
+}
