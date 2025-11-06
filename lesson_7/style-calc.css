@@ -1,0 +1,9 @@
+.test-calc {
+  width: calc(100% - 200px);
+  background-color: red;
+  height: 100vh;
+}
+
+body {
+  background-color: aqua;
+}
