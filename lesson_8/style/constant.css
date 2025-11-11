@@ -1,0 +1,14 @@
+:root {
+  /* size */
+  --main-container-lg: 1200px;
+
+  /*  */
+  --base-transition-effect: color 0.3s ease;
+
+  /* colors */
+  --button-base-color: #f84646;
+  --button-base-text-color: #ffffff;
+  --text-base-color: #000000;
+
+  /* adaptive */
+}
