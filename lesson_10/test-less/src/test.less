@@ -1,0 +1,32 @@
+@import 'main.less';
+
+@color: red;
+@box-color: yellowgreen;
+
+@width: 30px;
+@height: @width + 10px;
+
+.content {
+  background-color: @color;
+  padding: 20px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.base-box() {
+  width: @width;
+  height: @height;
+  background-color: @box-color;
+}
+
+.base-box {
+  .base-box();
+}
+
+.custom-box {
+  .base-box();
+
+  border: 1px solid black;
+}

@@ -20,7 +20,7 @@
 
 .menu li {
   color: #33383f;
-  font-family: "My Inter", sans-serif;
+  font-family: 'My Inter', sans-serif;
   margin-right: 24px;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .text_but {
-  font-family: "My Inter", sans-serif;
+  font-family: 'My Inter', sans-serif;
   font-weight: 400;
   font-size: 17px;
   line-height: 27px;
@@ -79,7 +79,7 @@
 }
 
 .but_sig_2::after {
-  content: url("../icons/right-arrow-backup-2-svgrepo-com.svg");
+  content: url('../icons/right-arrow-backup-2-svgrepo-com.svg');
   display: block;
   font-size: 16px;
 }
