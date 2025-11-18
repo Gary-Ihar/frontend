@@ -4,4 +4,7 @@ import { pluginLess } from '@rsbuild/plugin-less';
 // Docs: https://rsbuild.rs/config/
 export default defineConfig({
   plugins: [pluginLess()],
+  html: {
+    template: './index.html',
+  },
 });
