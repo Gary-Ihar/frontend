@@ -7,29 +7,28 @@
 @height: @width + 10px;
 
 body {
-}
+  & .fixed {
+    position: fixed;
+    bottom: 20px;
+    left: 40px;
+    width: 100px;
+    height: 70px;
+    background-color: yellow;
+  }
 
-.content {
-  background-color: @color;
-  padding: 20px;
-}
+  & .content {
+    height: 500px;
+    background-color: black;
+  }
 
-.container {
-  padding: 20px;
-}
+  & .sticky {
+    position: sticky;
+    top: 10px;
+    left: 20px;
 
-.base-box() {
-  width: @width;
-  height: @height;
-  background-color: @box-color;
-}
+    width: 100px;
+    height: 70px;
 
-.base-box {
-  .base-box();
-}
-
-.custom-box {
-  .base-box();
-
-  border: 1px solid black;
+    background-color: green;
+  }
 }
