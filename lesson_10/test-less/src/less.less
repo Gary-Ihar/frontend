@@ -1,0 +1,141 @@
+// Mixins
+
+.base_box {
+  width: 100px;
+  height: 70px;
+  border-radius: 15%;
+  border: 1px solid black;
+}
+
+.green_box {
+  .base_box();
+  background-color: green;
+  & .some_class {
+    background-attachment: fixed;
+  }
+}
+
+.red_box {
+  .base_box();
+  background-color: red;
+}
+
+// Deep media queries
+
+.component {
+  width: 200px;
+  height: 130px;
+  background-color: red;
+  @media (width >= 768px) {
+    background-color: yellow;
+    @media (min-resolution: 1x) {
+      background-color: orange;
+    }
+  }
+  @media (width >= 1280px) {
+    background-color: green;
+  }
+}
+
+// Operations
+
+// numbers are converted into the same units
+@conversion-1: 5cm + 10mm; // result is 6cm
+@conversion-2: 2cm - 3cm - 5mm; // result is -1.5cm
+
+// conversion is impossible
+@incompatible-units: 2 + 5px - 3cm; // result is 4px
+
+// example with variables
+@base: 5%;
+@filler: @base * 2; // result is 10%
+@other: @base + @filler; // result is 15%
+
+.operations {
+  width: @incompatible-units;
+  background-color: red;
+  height: 70px;
+}
+
+// calc() exception
+
+.calc_exception {
+  @var: 50vh/2;
+  width: calc(50% + ((50vh / 2) - 20px)); // result is calc(50% + (25vh - 20px))
+  background-color: red;
+  height: 70px;
+}
+
+// Escaping
+.escaping {
+  @test: 1px solid yellow;
+  @resolution: (width > 1100px);
+
+  border: @test;
+  width: 200px;
+  height: 170px;
+
+  @media @resolution {
+    background-color: aquamarine;
+  }
+}
+
+// Functions
+
+.functions {
+  @some: #fff;
+
+  width: 200px;
+  height: 170px;
+  //   background-color: if((100px < 500px), red, green);
+  //   background-color: if((isColor(@some)), red, green);
+}
+
+// Namespaces and Accessors
+
+.mixin_base_button() {
+  width: 100px;
+  height: 30px;
+  border-radius: 20%;
+  border: 1px solid black;
+}
+
+#buttons_kit() {
+  .base {
+    .mixin_base_button();
+  }
+
+  .link {
+    .mixin_base_button();
+    background-color: aquamarine;
+  }
+
+  .callback {
+    .mixin_base_button();
+    background-color: red;
+  }
+}
+
+.button_base {
+  #buttons_kit.base();
+}
+
+.button_link {
+  #buttons_kit.link();
+}
+
+.button_callback {
+  #buttons_kit.callback();
+}
+
+// Maps
+#colors() {
+  primary: black;
+  secondary: red;
+}
+
+.maps {
+  width: 200px;
+  height: 130px;
+  background-color: #colors[secondary];
+}
