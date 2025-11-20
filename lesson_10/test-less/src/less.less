@@ -1,18 +1,19 @@
+@import './variables.less';
+
 // Mixins
 
-.base_box {
+.base_box(@height: 50px, @border_color: black) {
   width: 100px;
-  height: 70px;
+  height: @height;
   border-radius: 15%;
-  border: 1px solid black;
+  border-width: 1px;
+  border-style: solid;
+  border-color: @border_color;
 }
 
 .green_box {
-  .base_box();
+  .base_box(70px, red);
   background-color: green;
-  & .some_class {
-    background-attachment: fixed;
-  }
 }
 
 .red_box {
@@ -138,4 +139,30 @@
   width: 200px;
   height: 130px;
   background-color: #colors[secondary];
+}
+
+// Scopes
+@var: red;
+
+html {
+  .scopes {
+    height: 200px;
+  }
+
+  @var: yellow;
+
+  .scopes {
+    @var: green;
+    background-color: @var;
+  }
+
+  .scopes {
+    background-color: @var;
+  }
+}
+
+// Imports
+.imports {
+  height: 200px;
+  background-color: @bg-color;
 }
