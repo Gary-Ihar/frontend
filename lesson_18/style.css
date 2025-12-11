@@ -1,0 +1,21 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+.big1 {
+  width: 200px;
+  height: 200px;
+  background-color: greenyellow;
+}
+.big2 {
+  width: 200px;
+  height: 200px;
+  background-color: gray;
+}
+
+#test {
+  width: 100px;
+  height: 100px;
+  background-color: #15ff00;
+}
