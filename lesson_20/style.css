@@ -1,0 +1,19 @@
+.field {
+  position: relative;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  overflow: hidden;
+}
+
+.ball {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: yellow;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  top: 0px;
+  left: 0px;
+}
