@@ -1,0 +1,25 @@
+{
+  "name": "bundlers",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rspack build",
+    "dev": "rspack dev",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "preview": "rspack preview"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@rspack/cli": "^1.7.4",
+    "@rspack/core": "^1.7.4",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "less": "^4.5.1",
+    "less-loader": "^12.3.0",
+    "prettier": "^3.7.3"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.19"
+  }
+}
