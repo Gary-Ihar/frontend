@@ -1,49 +1,50 @@
-import { DragNDrop } from './dragndrop';
+import { applyDragNDrop } from './dragndrop';
 import { LocalStorage } from './localStorage';
-import { Notice } from './notice';
+import { Notice, NoticesStore } from './notice';
+import { Renderer } from './render';
 import './style.css';
 
-const dragDrop = new DragNDrop();
-const localStorageService = new LocalStorage('noticeApp');
+function createAddButton(noticesStore, renderer) {
+  const btn = document.createElement('button');
+  btn.textContent = '+';
+  btn.style.padding = '4px';
+  btn.style.cursor = 'pointer';
 
-const btn = document.createElement('button');
-btn.textContent = '+';
-btn.style.padding = '4px';
-btn.style.cursor = 'pointer';
-
-function initDragnDrop(notice) {
-  dragDrop.addHTMLElem(notice.HTMLElement, (left, top) => {
-    notice.updatePosition(left, top);
-
-    const oldData = localStorageService.get() ?? [];
-
-    localStorageService.set(
-      oldData.map((oldNotice) => {
-        if (oldNotice.id === notice.id) {
-          return notice;
-        }
-        return oldNotice;
-      })
+  btn.addEventListener('click', () => {
+    const title = prompt('Type name of notice title') || `Name_${Date.now()}`;
+    const notice = new Notice(
+      { title },
+      (id) => noticesStore.remove(id),
+      (notice) => noticesStore.update(notice)
     );
+
+    applyDragNDrop(notice.HTMLElement, (left, top) => noticesStore.update({ ...notice, left, top }));
+
+    noticesStore.add(notice);
+    renderer.addOne(notice.HTMLElement);
+  });
+
+  document.body.append(btn);
+}
+
+function initApp() {
+  const localStorageService = new LocalStorage('noticeApp');
+  const noticesStore = new NoticesStore(localStorageService);
+
+  const renderer = new Renderer();
+
+  createAddButton(noticesStore, renderer);
+
+  localStorageService.get().forEach((lcNotice) => {
+    const notice = new Notice(
+      lcNotice,
+      (id) => noticesStore.remove(id),
+      (notice) => noticesStore.update(notice)
+    );
+    applyDragNDrop(notice.HTMLElement, (left, top) => noticesStore.update({ ...notice, left, top }));
+    noticesStore.add(notice);
+    renderer.addOne(notice.HTMLElement);
   });
 }
 
-btn.addEventListener('click', () => {
-  const title = prompt('Type name of notice title', `Name_${Date.now()}`);
-  const notice = new Notice(title);
-
-  const oldData = localStorageService.get() ?? [];
-  oldData.push(notice);
-
-  localStorageService.set(oldData);
-  initDragnDrop(notice);
-});
-
-const noticeFromLC = localStorageService.get() ?? [];
-
-noticeFromLC.forEach((lcNotice) => {
-  const notice = new Notice(lcNotice.title, lcNotice.id, lcNotice.top, lcNotice.left, lcNotice.content);
-  initDragnDrop(notice);
-});
-
-document.body.append(btn);
+initApp();

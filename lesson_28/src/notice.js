@@ -1,19 +1,17 @@
 import { createElm } from './utils';
 
 export class Notice {
-  top = 20;
-  left = 20;
-
-  constructor(title, id, top, left, content) {
+  constructor(data, onRemove, onBlur) {
+    const { title, id, top, left, content } = data;
     this.id = id ?? Date.now();
     this.title = title;
-    this.top = top;
-    this.left = left;
+    this.top = top ?? 20;
+    this.left = left ?? 20;
     this.content = content ?? '';
-    this.HTMLElement = this.#getHTMLElement();
+    this.HTMLElement = this.#getHTMLElement(onRemove, onBlur);
   }
 
-  #getHTMLElement({ onDeleteClick } = {}) {
+  #getHTMLElement(onRemove, onBlur) {
     const div = createElm('div');
     const PADDING_PX = 8;
 
@@ -38,10 +36,16 @@ export class Notice {
     rmBtn.style.padding = '2px';
     rmBtn.style.cursor = 'pointer';
 
-    rmBtn.addEventListener('click', () => {
-      div.remove();
-      onDeleteClick?.();
-    });
+    rmBtn.addEventListener(
+      'click',
+      () => {
+        div.remove();
+        onRemove?.(this.id);
+      },
+      {
+        once: true,
+      }
+    );
 
     const h4 = createElm('h4');
     h4.textContent = this.title;
@@ -63,15 +67,44 @@ export class Notice {
     });
 
     textArea.addEventListener('mousedown', (e) => e.stopPropagation());
+    textArea.addEventListener('blur', () => onBlur(this));
 
     divTitle.append(h4, rmBtn);
     div.append(divTitle, textArea);
 
     return div;
   }
+}
 
-  updatePosition(left, top) {
-    this.top = top;
-    this.left = left;
+export class NoticesStore {
+  #notices = {};
+  #persistStorage;
+
+  constructor(persistStorage) {
+    this.#persistStorage = persistStorage;
+  }
+
+  #sync() {
+    const newItems = this.getNotices();
+    this.#persistStorage.set(newItems);
+  }
+
+  add(notice) {
+    this.#notices[notice.id] = notice;
+    this.#sync();
+  }
+
+  update(notice) {
+    this.#notices[notice.id] = notice;
+    this.#sync();
+  }
+
+  remove(id) {
+    delete this.#notices[id];
+    this.#sync();
+  }
+
+  getNotices() {
+    return Object.values(this.#notices);
   }
 }
