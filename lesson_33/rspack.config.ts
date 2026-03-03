@@ -71,5 +71,8 @@ export default defineConfig({
   },
   devServer: {
     open: true,
+    client: {
+      logging: 'error',
+    },
   },
 });
