@@ -1,4 +1,4 @@
-import { MOCK_USERS } from '../constants/mocks';
+import { MOCK_USERS } from '@/constants/mocks';
 import { useEffect, useMemo, useState } from 'react';
 
 const getUsers = () =>

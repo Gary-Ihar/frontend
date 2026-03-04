@@ -2,6 +2,7 @@ import { defineConfig } from '@rspack/cli';
 import { rspack, type SwcLoaderOptions } from '@rspack/core';
 import { ReactRefreshRspackPlugin } from '@rspack/plugin-react-refresh';
 import { TsCheckerRspackPlugin } from 'ts-checker-rspack-plugin';
+import path from 'path';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -14,6 +15,9 @@ export default defineConfig({
   },
   resolve: {
     extensions: ['...', '.ts', '.tsx', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [

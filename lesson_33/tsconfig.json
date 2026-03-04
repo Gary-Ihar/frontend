@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
 
     "sourceMap": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "outDir": "./dist/",
     "alwaysStrict": true,
     "jsx": "react-jsx",
@@ -31,7 +31,10 @@
     "noImplicitOverride": true,
     "noImplicitAny": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }
