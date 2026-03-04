@@ -1,8 +1,9 @@
 import { MOCK_USERS } from '@/constants/mocks';
 import { useEffect, useMemo, useState } from 'react';
 
-const getUsers = () =>
+const getUsers = (start: () => void) =>
   new Promise<typeof MOCK_USERS>((res) => {
+    start();
     setTimeout(() => res(MOCK_USERS), 4000);
   });
 
@@ -15,9 +16,7 @@ export const List = () => {
 
   useEffect(() => {
     let isMounted = true;
-
-    setLoading(true);
-    getUsers()
+    getUsers(() => setLoading(true))
       .then((newUsers) => {
         if (isMounted) {
           setUsers(newUsers);
@@ -27,6 +26,9 @@ export const List = () => {
         if (isMounted) {
           setLoading(false);
         }
+      })
+      .catch((error) => {
+        console.error(error);
       });
 
     return () => {
@@ -59,14 +61,15 @@ export const List = () => {
         </button>
         <button
           onClick={() => {
-            setLoading(true);
-
-            getUsers()
+            getUsers(() => setLoading(true))
               .then((newUsers) => {
                 setUsers(newUsers);
               })
               .finally(() => {
                 setLoading(false);
+              })
+              .catch((error) => {
+                console.error(error);
               });
           }}
         >
