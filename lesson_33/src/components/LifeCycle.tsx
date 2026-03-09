@@ -37,13 +37,15 @@ export const LifeCycle2 = () => {
   useEffect(() => {
     let isMounted = true;
 
-    getUsers().then((users) => {
-      console.log(users, isMounted);
-      if (isMounted) {
+    getUsers()
+      .then((users) => {
         console.log(users, isMounted);
-        setUsers(users);
-      }
-    });
+        if (isMounted) {
+          console.log(users, isMounted);
+          setUsers(users);
+        }
+      })
+      .catch(() => {});
 
     return () => {
       isMounted = false;

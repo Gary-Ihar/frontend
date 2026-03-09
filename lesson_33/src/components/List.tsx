@@ -1,5 +1,5 @@
 import { MOCK_USERS } from '@/constants/mocks';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 
 const getUsers = (start: () => void) =>
   new Promise<typeof MOCK_USERS>((res) => {
@@ -14,34 +14,33 @@ export const List = () => {
 
   //   const someRef = useRef(0);
 
-  useEffect(() => {
-    let isMounted = true;
-    getUsers(() => setLoading(true))
-      .then((newUsers) => {
-        if (isMounted) {
-          setUsers(newUsers);
-        }
-      })
-      .finally(() => {
-        if (isMounted) {
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   getUsers(() => setLoading(true))
+  //     .then((newUsers) => {
+  //       if (isMounted) {
+  //         setUsers(newUsers);
+  //       }
+  //     })
+  //     .finally(() => {
+  //       if (isMounted) {
+  //         setLoading(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
 
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, []);
 
   //   useEffect(() => {
   //     setInterval(() => {
   //       someRef.current++;
   //     }, 1000);
   //   }, []);
-  console.log('render');
 
   const memoizedValue = useMemo(() => {
     console.log('calculated');
@@ -49,12 +48,24 @@ export const List = () => {
     return counter.count;
   }, [counter]);
 
+  // const callback = useCallback(() => {
+  //   console.log('some');
+  // }, []);
+  console.log('render');
+  useEffect(() => {
+    console.log('useEffect');
+  }, []);
+  useLayoutEffect(() => {
+    console.log('useLayoutEffect');
+  }, []);
+  console.log('render 2');
+
   return (
     <div>
       <div>
         <button
           onClick={() => {
-            setCounter(counter);
+            setCounter((prev) => ({ count: prev.count + 1 }));
           }}
         >
           test
@@ -83,3 +94,9 @@ export const List = () => {
     </div>
   );
 };
+
+// useState
+// useRef
+// useEffect
+// useMemo
+// useCallback
