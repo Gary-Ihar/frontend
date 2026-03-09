@@ -5,10 +5,11 @@ import { NoticesStore } from './services/localStorage';
 import { type Coords } from './components/notice/useDragndrop';
 
 export function App() {
-  const [notices, setNotices] = useState<BaseNotice[]>([]);
-  // TODO: Рассказать про баgи при usememo
-  const [syncNoticeStorage, setSyncNoticeStorage] =
-    useState<NoticesStore | null>(null);
+  const [syncNoticeStorage] = useState<NoticesStore>(() => new NoticesStore());
+
+  const [notices, setNotices] = useState<BaseNotice[]>(
+    syncNoticeStorage.notices,
+  );
 
   const handleUpdatePosition = useCallback(
     (id: BaseNotice['id'], position: Coords) => {
@@ -60,16 +61,8 @@ export function App() {
   };
 
   useEffect(() => {
-    syncNoticeStorage?.sync(notices);
+    syncNoticeStorage.sync(notices);
   }, [notices, syncNoticeStorage]);
-
-  useEffect(() => {
-    const storage = new NoticesStore();
-    storage.init();
-    const storageNotices = storage.getNotices();
-    setNotices(storageNotices);
-    setSyncNoticeStorage(storage);
-  }, []);
 
   return (
     <div>

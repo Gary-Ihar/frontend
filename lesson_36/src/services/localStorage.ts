@@ -30,22 +30,13 @@ class LocalStorage {
 
 export class NoticesStore extends LocalStorage {
   private static key = 'notices';
-  private notices: { [key: string]: BaseNotice } = {};
+  notices: BaseNotice[] = [];
 
   constructor() {
     super(NoticesStore.key);
-  }
-
-  init() {
     const notices = this.get<BaseNotice[]>();
     if (notices) {
-      this.notices = notices.reduce<{ [key: string]: BaseNotice }>(
-        (acc, notice) => ({
-          ...acc,
-          [notice.id]: notice,
-        }),
-        {},
-      );
+      this.notices = notices;
     }
   }
 
