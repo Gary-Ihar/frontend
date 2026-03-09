@@ -28,6 +28,7 @@ export default defineConfig([
       '@typescript-eslint/no-unsafe-return': 'off', // TODO: включить!
       'react-hooks/set-state-in-effect': 'off', // TODO: включить!
       '@typescript-eslint/no-unsafe-call': 'off', // TODO: включить!
+      'react-refresh/only-export-components': 'off', // TODO: включить!
       '@typescript-eslint/no-unused-vars': [
         'error',
         {

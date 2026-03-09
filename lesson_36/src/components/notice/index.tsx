@@ -1,11 +1,22 @@
 import type { BaseNotice } from '@/types';
 import { style } from './style';
 import { useDragndrop, type Coords } from '@/components/notice/useDragndrop';
+import { useThemeContext } from '@/contexts/ThemeContext';
 
 type Props = BaseNotice & {
   onCardRemove: (id: string) => void;
   onTextBlur: (id: string, value: string) => void;
   onDragEnd: (id: string, coords: Coords) => void;
+};
+
+const RemoveButton = ({
+  id,
+  onCardRemove,
+}: Pick<Props, 'onCardRemove' | 'id'>) => {
+  const theme = useThemeContext();
+  console.log(theme);
+
+  return <button onClick={() => onCardRemove(id)}>X</button>;
 };
 
 export const Notice = (props: Props) => {
@@ -18,7 +29,7 @@ export const Notice = (props: Props) => {
     <div style={{ ...style.card, top, left }} ref={setElement}>
       <div style={style.title}>
         <h4 style={style.h4}>{title}</h4>
-        <button onClick={() => onCardRemove(id)}>X</button>
+        <RemoveButton id={id} onCardRemove={onCardRemove} />
       </div>
       <textarea
         defaultValue={content}

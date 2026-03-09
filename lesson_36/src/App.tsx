@@ -13,6 +13,8 @@ export function App() {
 
   const handleUpdatePosition = useCallback(
     (id: BaseNotice['id'], position: Coords) => {
+      console.log(position); // TODO: почему undefined left/top при блуре на текстарею
+
       setNotices((prevNotices) =>
         prevNotices.map((ntc) => {
           if (ntc.id === id) {

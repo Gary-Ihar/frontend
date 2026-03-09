@@ -1,9 +1,12 @@
 // import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App.tsx';
+import { ThemeContextComponent } from './contexts/ThemeContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <App />,
+  <ThemeContextComponent>
+    <App />,
+  </ThemeContextComponent>,
 );
 
 // ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
