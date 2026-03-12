@@ -30,8 +30,8 @@ export const useDragndrop = (onDragEnd: HandleDragEnd) => {
         const offsetX = clientX - elemCoords.x;
         const offsetY = clientY - elemCoords.y;
 
-        let top: number;
-        let left: number;
+        let top: number = elemCoords.y;
+        let left: number = elemCoords.x;
 
         const handlemouseMove = (event: MouseEvent) => {
           const { clientX, clientY } = event;
