@@ -5,6 +5,27 @@ const PORT = 8081;
 
 app.use(express.text({ type: '*/*' }));
 
+const DATA = {
+  users: [
+    {
+      name: 'Ihar',
+      age: 32,
+      email: 'some@gmail.com',
+      isAdmin: true,
+      login: 'Gary',
+      pass: 123,
+    },
+  ],
+};
+
+const setCustomTimeout = (cb) => {
+  const delays = [0, 500, 1000, 1500, 2000, 2500, 3000, 4000, 5000];
+  const delay = delays[Math.floor(Math.random() * delays.length)];
+  return setTimeout(() => {
+    cb?.();
+  }, delay);
+};
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -24,12 +45,22 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/api/test', (req, res) => {
-  console.log('Получен POST запрос:', req.body);
-  res.json({
-    message: 'Запрос успешно обработан',
-    data: req.body,
+app.post('/api/login', (req, res) => {
+  setCustomTimeout(() => {
+    const { login, pass } = req.body;
+
+    const findetUser = DATA.users.find((user) => user.login === login && user.pass === pass);
+    if (findetUser) {
+      const { pass, ...userWithoutPass } = findetUser;
+      res.json({
+        data: userWithoutPass,
+      });
+    } else {
+      res.status(404).send(JSON.stringify('Не зареган'));
+    }
   });
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`listen on port ${PORT}`);
+});

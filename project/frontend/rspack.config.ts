@@ -80,6 +80,7 @@ export default defineConfig({
   },
   devServer: {
     port: 3000,
+    historyApiFallback: true,
     open: true,
     client: {
       logging: 'error',
