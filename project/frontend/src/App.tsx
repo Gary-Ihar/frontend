@@ -3,6 +3,9 @@ import { Login } from './pages/login';
 import { ROUTES } from './constants/routes';
 import { Home } from './pages/home';
 import { useAuthContext } from './contexts/auth-context';
+import { UsersPage } from './pages/users';
+import { List } from './pages/users/List';
+import { One } from './pages/users/One';
 
 export function App() {
   const { isLogged } = useAuthContext() ?? {};
@@ -11,6 +14,10 @@ export function App() {
     <Routes>
       {isLogged ? (
         <>
+          <Route path={`${ROUTES.users.index}/`} element={<UsersPage />}>
+            <Route index element={<List />} />
+            <Route path=":userId" element={<One />} />
+          </Route>
           <Route path={ROUTES.home} element={<Home />} />
           <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
         </>

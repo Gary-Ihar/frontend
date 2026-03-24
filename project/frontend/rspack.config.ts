@@ -14,6 +14,9 @@ export default defineConfig({
   entry: {
     main: './src/main.tsx',
   },
+  output: {
+    publicPath: '/',
+  },
   resolve: {
     extensions: ['...', '.ts', '.tsx', '.jsx'],
     alias: {
@@ -22,6 +25,14 @@ export default defineConfig({
   },
   module: {
     rules: [
+      {
+        test: /\.css$/i,
+        type: 'css/auto',
+      },
+      {
+        test: /\.module\.css$/i,
+        type: 'css/module',
+      },
       {
         test: /\.svg$/,
         type: 'asset',
@@ -49,6 +60,19 @@ export default defineConfig({
             } satisfies SwcLoaderOptions,
           },
         ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'less-loader',
+            // options: {
+            //   // ...
+            // },
+          },
+        ],
+        // set to 'css/auto' if you want to support '*.module.less' as CSS Modules, otherwise set type to 'css'
+        type: 'css/auto',
       },
     ],
   },

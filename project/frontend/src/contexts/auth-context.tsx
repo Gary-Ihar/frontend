@@ -6,15 +6,15 @@ import {
   useState,
   type PropsWithChildren,
 } from 'react';
-import type { User } from '@/types';
+import type { AuthUser } from '@/types';
 import { LSService } from '@/services/ls/local-storage';
 
 type Context = {
-  user: User | null;
+  user: AuthUser | null;
   isLogged: boolean;
   login: (
     data: { login: string; pass: string },
-    onSuccess: (user: User) => void,
+    onSuccess: (user: AuthUser) => void,
   ) => void;
 };
 
@@ -22,12 +22,12 @@ type APIResponse<T> = {
   data: T;
 };
 
-const userStorage = new LSService<User>('user');
+const userStorage = new LSService<AuthUser>('user');
 
 export const AuthContext = createContext<Context | null>(null);
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const [user, setUser] = useState<User | null>(() => userStorage.get());
+  const [user, setUser] = useState<AuthUser | null>(() => userStorage.get());
 
   const login = useCallback<Context['login']>((data, onSuccess) => {
     const { login, pass } = data;
@@ -36,7 +36,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       body: JSON.stringify({ login, pass: Number(pass) }),
     })
       .then((res) => res.json())
-      .then((data: APIResponse<User>) => {
+      .then((data: APIResponse<AuthUser>) => {
         setUser(data.data);
         userStorage.set(data.data);
         onSuccess(data.data);
