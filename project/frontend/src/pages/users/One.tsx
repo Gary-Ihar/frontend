@@ -3,7 +3,9 @@ import { useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
 import type { User } from '@/types';
 
-export const One = () => {
+console.log('stript from USER_ONE component');
+
+const One = () => {
   const navigate = useNavigate();
 
   const { userId } = useParams<{ userId?: string }>();
@@ -31,3 +33,4 @@ export const One = () => {
     </div>
   );
 };
+export default One;

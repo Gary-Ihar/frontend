@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router';
+console.log('stript from USERS component');
 
-export const UsersPage = () => {
+const UsersPage = () => {
   return (
     <div>
       Main user page title!
@@ -8,3 +9,5 @@ export const UsersPage = () => {
     </div>
   );
 };
+
+export default UsersPage;

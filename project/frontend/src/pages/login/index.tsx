@@ -29,8 +29,6 @@ export const Login = () => {
       <button
         onClick={() => {
           if (!login || !pass || !fetchLogin) return;
-          console.log('here');
-
           fetchLogin({ login, pass }, () => {
             void navigate(ROUTES.home);
           });

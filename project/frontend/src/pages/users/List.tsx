@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router';
 import { ROUTES } from '@/constants/routes';
 import { useUsersContext } from '@/contexts/users-context';
+console.log('stript from USERS_LIST component');
 
-export const List = () => {
+const List = () => {
   const navigate = useNavigate();
   const { users } = useUsersContext() ?? {};
 
@@ -26,3 +27,4 @@ export const List = () => {
     </div>
   );
 };
+export default List;

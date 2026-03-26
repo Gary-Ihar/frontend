@@ -16,6 +16,7 @@ type Context = {
     data: { login: string; pass: string },
     onSuccess: (user: AuthUser) => void,
   ) => void;
+  logout: () => void;
 };
 
 type APIResponse<T> = {
@@ -46,9 +47,14 @@ export function AuthProvider({ children }: PropsWithChildren) {
       });
   }, []);
 
+  const logout = useCallback(() => {
+    setUser(null);
+    userStorage.clear();
+  }, []);
+
   const data = useMemo<Context>(
-    () => ({ user, login, isLogged: !!user }),
-    [login, user],
+    () => ({ user, login, isLogged: !!user, logout }),
+    [login, user, logout],
   );
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

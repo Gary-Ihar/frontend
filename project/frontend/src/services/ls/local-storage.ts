@@ -13,4 +13,8 @@ export class LSService<T> {
   set(value: T) {
     localStorage.setItem(this.key, JSON.stringify(value));
   }
+
+  clear() {
+    localStorage.removeItem(this.key);
+  }
 }
