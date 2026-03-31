@@ -11,6 +11,7 @@ import { useLocation } from 'react-router';
 
 type Context = {
   users: User[] | null;
+  loading: boolean;
 };
 
 export const UsersContext = createContext<Context | null>(null);
@@ -39,7 +40,9 @@ export function UsersProvider({ children }: PropsWithChildren) {
   }, [load, location.pathname, wasLoaded]);
 
   return (
-    <UsersContext.Provider value={{ users }}>{children}</UsersContext.Provider>
+    <UsersContext.Provider value={{ users, loading: !wasLoaded }}>
+      {children}
+    </UsersContext.Provider>
   );
 }
 

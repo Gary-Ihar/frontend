@@ -1,27 +1,25 @@
-import { useRequest } from '@/hooks/useRequest';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
-import type { User } from '@/types';
+import { Spin } from 'antd';
+import { userState } from '@/states/users';
+import { observer } from 'mobx-react-lite';
 
 console.log('stript from USER_ONE component');
 
-const One = () => {
+const One = observer(() => {
+  const { user, loadingOne } = userState;
+
   const navigate = useNavigate();
 
   const { userId } = useParams<{ userId?: string }>();
 
-  const { data, load } = useRequest<User>({
-    method: 'GET',
-    path: `https://jsonplaceholder.typicode.com/users/${userId}`,
-  });
-
   useEffect(() => {
     if (!userId) return;
-    load();
-  }, [load, userId]);
+    userState.loadOne(Number(userId));
+  }, [userId]);
 
   return (
-    <div>
+    <Spin spinning={loadingOne}>
       <button
         onClick={() => {
           void navigate(-1);
@@ -29,8 +27,9 @@ const One = () => {
       >
         Back
       </button>
-      <div>One: {JSON.stringify(data)}</div>
-    </div>
+      <div>One: {JSON.stringify(user)}</div>
+    </Spin>
   );
-};
+});
+
 export default One;

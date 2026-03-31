@@ -6,6 +6,7 @@ import { useAuthContext } from './contexts/auth-context';
 import { lazy, memo, Suspense } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Layout, Menu, theme } from 'antd';
+
 const { Header, Content, Footer } = Layout;
 
 const HomePage = lazy(() => import('@/pages/home'));
