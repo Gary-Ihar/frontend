@@ -3,11 +3,12 @@ import { ROUTES } from '@/constants/routes';
 import { Table, type TableProps } from 'antd';
 import type { User } from '@/types';
 import { observer } from 'mobx-react-lite';
-import { userState } from '@/states/users';
 import { useEffect } from 'react';
+import { useAppState } from '@/states';
 
 const List = observer(() => {
-  const { usersList, loadingList } = userState;
+  const { usersState } = useAppState();
+  const { usersList, loadingList } = usersState;
 
   const columns: TableProps<User>['columns'] = [
     {
@@ -52,8 +53,8 @@ const List = observer(() => {
   ];
 
   useEffect(() => {
-    userState.loadList();
-  }, []);
+    usersState.loadList();
+  }, [usersState]);
 
   return (
     <Table

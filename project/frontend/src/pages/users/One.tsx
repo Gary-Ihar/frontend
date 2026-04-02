@@ -1,13 +1,14 @@
 import { useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
 import { Spin } from 'antd';
-import { userState } from '@/states/users';
 import { observer } from 'mobx-react-lite';
+import { useAppState } from '@/states';
 
 console.log('stript from USER_ONE component');
 
 const One = observer(() => {
-  const { user, loadingOne } = userState;
+  const { usersState } = useAppState();
+  const { user, loadingOne } = usersState;
 
   const navigate = useNavigate();
 
@@ -15,8 +16,8 @@ const One = observer(() => {
 
   useEffect(() => {
     if (!userId) return;
-    userState.loadOne(Number(userId));
-  }, [userId]);
+    usersState.loadOne(Number(userId));
+  }, [userId, usersState]);
 
   return (
     <Spin spinning={loadingOne}>

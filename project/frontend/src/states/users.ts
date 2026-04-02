@@ -1,7 +1,7 @@
 import type { User } from '@/types';
 import { runInAction, makeAutoObservable } from 'mobx';
 
-class UsersState {
+export class UsersState {
   usersList: User[] = [];
   user?: User = undefined;
 
@@ -55,5 +55,3 @@ class UsersState {
       });
   }
 }
-
-export const userState = new UsersState();

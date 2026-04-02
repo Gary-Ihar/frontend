@@ -1,11 +1,18 @@
 import { Navigate, NavLink, Route, Routes, useLocation } from 'react-router';
 import { Login } from './pages/login';
 import { ROUTES } from './constants/routes';
-import { useAuthContext } from './contexts/auth-context';
 
-import { lazy, memo, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { Layout, Menu, theme } from 'antd';
+import { Button, Layout, Menu, theme } from 'antd';
+import { useAppState } from './states';
+import { observer } from 'mobx-react-lite';
+// import { Avatar } from './components/Some';
+// import { TeamOutlined, UserOutlined } from '@ant-design/icons';
+
+// const renderAvatarIcon = (isAdmin: boolean) => {
+//   return isAdmin ? <UserOutlined /> : <TeamOutlined />;
+// };
 
 const { Header, Content, Footer } = Layout;
 
@@ -14,8 +21,9 @@ const UsersPage = lazy(() => import('@/pages/users'));
 const ListUsersPage = lazy(() => import('@/pages/users/List'));
 const OneUserPage = lazy(() => import('@/pages/users/One'));
 
-export const App = memo(function App() {
-  const { isLogged, logout } = useAuthContext() ?? {};
+export const App = observer(function App() {
+  const { authState, uiState } = useAppState();
+  const { isLogged } = authState;
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -42,7 +50,7 @@ export const App = memo(function App() {
             selectedKeys={[pathname]}
             onClick={({ key }) => {
               if (key === 'logout') {
-                logout?.();
+                authState.logout();
               }
             }}
             items={[
@@ -73,6 +81,10 @@ export const App = memo(function App() {
             ]}
             style={{ flex: 1, minWidth: 0 }}
           />
+
+          <Button type="primary" onClick={() => uiState.changeTheme()}>
+            Change theme
+          </Button>
         </Header>
       )}
 

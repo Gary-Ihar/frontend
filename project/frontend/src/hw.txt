@@ -1,0 +1,15 @@
+1) Обогатить ответ https://jsonplaceholder.typicode.com/users 
+реальными адресами и в таблицу под кажду запись вкидывать карту с локацией
+
+2) export const Avatar = ({ перевевсти на renderprop как это сделано со стейтом
+    <StateProvider>
+      {({ uiState }) => (
+        <Observer>
+          {() => (
+            <ConfigProvider locale={uiState.locale === 'en_GB' ? en_GB : ru_RU}>
+              <App />
+            </ConfigProvider>
+          )}
+        </Observer>
+      )}
+    </StateProvider>

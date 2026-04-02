@@ -1,12 +1,14 @@
 import { ROUTES } from '@/constants/routes';
-import { useAuthContext } from '@/contexts/auth-context';
+import { useAppState } from '@/states';
+import { Button } from 'antd';
+import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-export const Login = () => {
+export const Login = observer(() => {
   const navigate = useNavigate();
 
-  const { login: fetchLogin } = useAuthContext() ?? {};
+  const { authState } = useAppState();
 
   const [login, setLogin] = useState('');
   const [pass, setPass] = useState('');
@@ -26,16 +28,18 @@ export const Login = () => {
         placeholder="Input password"
       />
       <br />
-      <button
+      <Button
+        type="primary"
+        loading={authState.loading}
         onClick={() => {
-          if (!login || !pass || !fetchLogin) return;
-          fetchLogin({ login, pass }, () => {
+          if (!login || !pass) return;
+          authState.login({ login, pass }, () => {
             void navigate(ROUTES.home);
           });
         }}
       >
         Log in
-      </button>
+      </Button>
     </div>
   );
-};
+});
