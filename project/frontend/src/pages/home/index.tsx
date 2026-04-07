@@ -8,7 +8,7 @@ const Home = observer(() => {
     authState: { user },
   } = useAppState();
 
-  return <div>Welcome to our App dear {user?.name}</div>;
+  return <div>Welcome to our App dear {user?.fullName}</div>;
 });
 
 export default Home;

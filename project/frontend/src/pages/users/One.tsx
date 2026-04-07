@@ -16,7 +16,7 @@ const One = observer(() => {
 
   useEffect(() => {
     if (!userId) return;
-    usersState.loadOne(Number(userId));
+    usersState.loadOne(userId);
   }, [userId, usersState]);
 
   return (

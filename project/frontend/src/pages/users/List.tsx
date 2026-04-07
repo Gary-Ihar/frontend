@@ -13,10 +13,10 @@ const List = observer(() => {
   const columns: TableProps<User>['columns'] = [
     {
       title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'fullName',
+      key: 'fullName',
       defaultSortOrder: 'ascend',
-      sorter: (a, b) => a.name.localeCompare(b.name),
+      sorter: (a, b) => a.fullName.localeCompare(b.fullName),
     },
     {
       title: 'UserName',
@@ -26,7 +26,7 @@ const List = observer(() => {
     {
       title: 'Address',
       key: 'address',
-      dataIndex: ['address', 'city'],
+      dataIndex: 'address',
     },
     {
       title: 'Web Site',
@@ -40,14 +40,14 @@ const List = observer(() => {
     },
     {
       title: 'Company Name',
-      key: 'companyName',
-      dataIndex: ['company', 'name'],
+      key: 'organization',
+      dataIndex: 'organization',
     },
     {
       title: 'Action',
       key: 'action',
-      render: (_, { id }) => (
-        <NavLink to={ROUTES.users.getLinkById(String(id))}>View</NavLink>
+      render: (_, { uiid }) => (
+        <NavLink to={ROUTES.users.getLinkById(uiid)}>View</NavLink>
       ),
     },
   ];
@@ -58,7 +58,7 @@ const List = observer(() => {
 
   return (
     <Table
-      rowKey={'id'}
+      rowKey={'uiid'}
       columns={columns}
       dataSource={usersList}
       loading={loadingList}

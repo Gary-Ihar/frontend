@@ -1,37 +1,31 @@
-export type AuthUser = {
-  name: string;
-  age: number;
-  email: string;
-  isAdmin: boolean;
-  login: string;
-};
-
 export type User = {
-  id: number;
-  name: string;
+  uiid: string;
+  fullName: string;
   username: string;
-  email: string;
-  address: Address;
-  phone: string;
+  address: string;
   website: string;
-  company: Company;
+  organization: string;
 };
 
-type Address = {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: Geo;
+export type APIResponse<T> = {
+  data: T;
 };
 
-type Geo = {
-  lat: string;
-  lng: string;
-};
+// type Address = {
+//   street: string;
+//   suite: string;
+//   city: string;
+//   zipcode: string;
+//   geo: Geo;
+// };
 
-type Company = {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-};
+// type Geo = {
+//   lat: string;
+//   lng: string;
+// };
+
+// type Company = {
+//   name: string;
+//   catchPhrase: string;
+//   bs: string;
+// };

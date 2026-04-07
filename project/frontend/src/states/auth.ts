@@ -1,15 +1,11 @@
 import { LSService } from '@/services/ls/local-storage';
-import type { AuthUser } from '@/types';
+import type { APIResponse, User } from '@/types';
 import { makeAutoObservable, runInAction } from 'mobx';
 
-type APIResponse<T> = {
-  data: T;
-};
-
 export class AuthState {
-  user?: AuthUser = undefined;
+  user?: User = undefined;
 
-  lsStorage = new LSService<AuthUser>('user');
+  lsStorage = new LSService<User>('user');
   loading = false;
 
   constructor() {
@@ -27,7 +23,7 @@ export class AuthState {
 
   login(
     data: { login: string; pass: string },
-    onSuccess: (user: AuthUser) => void,
+    onSuccess: (user: User) => void,
   ) {
     if (this.loading) return;
     this.loading = true;
@@ -38,7 +34,7 @@ export class AuthState {
       body: JSON.stringify({ login, pass: Number(pass) }),
     })
       .then((res) => res.json())
-      .then((data: APIResponse<AuthUser>) => {
+      .then((data: APIResponse<User>) => {
         runInAction(() => {
           this.user = data.data;
           this.lsStorage.set(data.data);

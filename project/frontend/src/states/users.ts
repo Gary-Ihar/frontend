@@ -1,4 +1,4 @@
-import type { User } from '@/types';
+import type { APIResponse, User } from '@/types';
 import { runInAction, makeAutoObservable } from 'mobx';
 
 export class UsersState {
@@ -16,13 +16,13 @@ export class UsersState {
     if (this.loadingList) return;
     this.loadingList = true;
 
-    fetch('https://jsonplaceholder.typicode.com/users', {
+    fetch('http://localhost:8081/api/users', {
       method: 'GET',
     })
       .then((res) => res.json())
-      .then((responseData: User[]) => {
+      .then(({ data }: APIResponse<User[]>) => {
         runInAction(() => {
-          this.usersList = responseData;
+          this.usersList = data;
         });
       })
       .catch(() => {})
@@ -33,8 +33,8 @@ export class UsersState {
       });
   }
 
-  loadOne(userId: number) {
-    if (userId === this.user?.id) return;
+  loadOne(userId: string) {
+    if (userId === this.user?.uiid) return;
     if (this.loadingOne) return;
     this.loadingOne = true;
 
