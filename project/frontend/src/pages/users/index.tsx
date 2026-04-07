@@ -1,21 +1,18 @@
-import { useAppState } from '@/states';
-import { Button, DatePicker } from 'antd';
-import { observer } from 'mobx-react-lite';
+import { Col, Row, Typography } from 'antd';
 import { Outlet } from 'react-router';
 
-const UsersPage = observer(() => {
-  const { uiState } = useAppState();
-
+const UsersPage = () => {
   return (
-    <div>
-      Main user page title!
-      <Button type="primary" onClick={() => uiState.changeLocale()}>
-        Change Locale
-      </Button>
-      <DatePicker />
-      <Outlet />
-    </div>
+    <Row>
+      <Col span={24}>
+        <Typography.Title level={1}>Main user page title! </Typography.Title>
+      </Col>
+
+      <Col span={24}>
+        <Outlet />
+      </Col>
+    </Row>
   );
-});
+};
 
 export default UsersPage;

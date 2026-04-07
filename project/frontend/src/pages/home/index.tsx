@@ -1,14 +1,19 @@
-import { useAppState } from '@/states';
-import { observer } from 'mobx-react-lite';
+import { withState } from '@/states';
 
 console.log('stript from HOME component');
 
-const Home = observer(() => {
-  const {
-    authState: { user },
-  } = useAppState();
+type Props = {
+  defaultName?: string;
+};
 
-  return <div>Welcome to our App dear {user?.fullName}</div>;
+const Home = withState<Props>((props) => {
+  const { state, defaultName = 'defaultName' } = props;
+
+  return (
+    <div>
+      Welcome to our App dear {state.authState.user?.fullName ?? defaultName}
+    </div>
+  );
 });
 
 export default Home;

@@ -571,6 +571,23 @@ app.get('/api/users', (_, res) => {
   });
 });
 
+app.get('/api/users/:id', (req, res) => {
+  setCustomTimeout(() => {
+    const userId = req.params.id; // Получаем ID из URL
+    const user = DATA.users.find((u) => u.uuid == userId);
+
+    if (user) {
+      res.json({
+        data: user,
+      });
+    } else {
+      res.status(404).json({
+        error: 'User not found',
+      });
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`listen on port ${PORT}`);
 });

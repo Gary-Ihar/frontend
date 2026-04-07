@@ -1,14 +1,11 @@
 import { ROUTES } from '@/constants/routes';
-import { useAppState } from '@/states';
+import { withState } from '@/states';
 import { Button } from 'antd';
-import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-export const Login = observer(() => {
+export const Login = withState(({ state: { authState } }) => {
   const navigate = useNavigate();
-
-  const { authState } = useAppState();
 
   const [login, setLogin] = useState('');
   const [pass, setPass] = useState('');

@@ -1,8 +1,8 @@
-import type { APIResponse, User } from '@/types';
-import { runInAction, makeAutoObservable } from 'mobx';
+import type { User } from '@/types';
+import { makeAutoObservable, runInAction } from 'mobx';
 
-export class UsersState {
-  users: User[] = [];
+export class State {
+  user?: User = undefined;
 
   loading = false;
 
@@ -10,17 +10,18 @@ export class UsersState {
     makeAutoObservable(this);
   }
 
-  load() {
+  load(userId: string) {
+    if (userId === this.user?.uuid) return;
     if (this.loading) return;
     this.loading = true;
 
-    fetch('http://localhost:8081/api/users', {
+    fetch(`http://localhost:8081/api/users/${userId}`, {
       method: 'GET',
     })
       .then((res) => res.json())
-      .then(({ data }: APIResponse<User[]>) => {
+      .then((responseData: User) => {
         runInAction(() => {
-          this.users = data;
+          this.user = responseData;
         });
       })
       .catch(() => {})

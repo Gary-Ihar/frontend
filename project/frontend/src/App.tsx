@@ -5,8 +5,7 @@ import { ROUTES } from './constants/routes';
 import { lazy, Suspense } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Button, Layout, Menu, theme } from 'antd';
-import { useAppState } from './states';
-import { observer } from 'mobx-react-lite';
+import { withState } from './states';
 // import { Avatar } from './components/Some';
 // import { TeamOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -21,14 +20,14 @@ const UsersPage = lazy(() => import('@/pages/users'));
 const ListUsersPage = lazy(() => import('@/pages/users/List'));
 const OneUserPage = lazy(() => import('@/pages/users/One'));
 
-export const App = observer(function App() {
-  const { authState, uiState } = useAppState();
+export const App = withState(({ state: { authState, uiState } }) => {
   const { isLogged } = authState;
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   const { pathname } = useLocation();
+  console.log(pathname);
 
   return (
     <Layout>

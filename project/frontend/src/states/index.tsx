@@ -1,7 +1,14 @@
-import { createContext, useContext, type ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  type ReactNode,
+  type JSX,
+  useMemo,
+} from 'react';
 import { UsersState } from './users';
 import { AuthState } from './auth';
 import { UIState } from './ui';
+import { observer } from 'mobx-react-lite';
 
 type Props = {
   children?: (state: State) => ReactNode;
@@ -31,6 +38,35 @@ export function StateProvider({ children }: Props) {
   );
 }
 
-export function useAppState(): State {
+function useAppState(): State {
   return useContext(StateContext);
+}
+
+type WithStateProps = {
+  state: State;
+};
+
+export function withState<T>(
+  Component: (p: WithStateProps & T) => JSX.Element,
+) {
+  const ObservedComponent = observer(Component);
+
+  return function (props: T) {
+    const state = useAppState();
+
+    return <ObservedComponent state={state} {...props} />;
+  };
+}
+
+export function withLocalState<P, S extends object>(
+  Component: (p: { state: S } & P) => JSX.Element,
+  State: new () => S,
+) {
+  const ObservedComponent = observer(Component);
+
+  return function (props: P) {
+    const state = useMemo(() => new State(), []);
+
+    return <ObservedComponent state={state} {...props} />;
+  };
 }

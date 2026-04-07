@@ -2,13 +2,11 @@ import { Link, NavLink } from 'react-router';
 import { ROUTES } from '@/constants/routes';
 import { Table, type TableProps } from 'antd';
 import type { User } from '@/types';
-import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { useAppState } from '@/states';
+import { withState } from '@/states';
 
-const List = observer(() => {
-  const { usersState } = useAppState();
-  const { usersList, loadingList } = usersState;
+const List = withState(({ state: { usersState } }) => {
+  const { users, loading } = usersState;
 
   const columns: TableProps<User>['columns'] = [
     {
@@ -46,22 +44,22 @@ const List = observer(() => {
     {
       title: 'Action',
       key: 'action',
-      render: (_, { uiid }) => (
-        <NavLink to={ROUTES.users.getLinkById(uiid)}>View</NavLink>
+      render: (_, { uuid }) => (
+        <NavLink to={ROUTES.users.getLinkById(uuid)}>View</NavLink>
       ),
     },
   ];
 
   useEffect(() => {
-    usersState.loadList();
+    usersState.load();
   }, [usersState]);
 
   return (
     <Table
-      rowKey={'uiid'}
+      rowKey={'uuid'}
       columns={columns}
-      dataSource={usersList}
-      loading={loadingList}
+      dataSource={users}
+      loading={loading}
     />
   );
 });
