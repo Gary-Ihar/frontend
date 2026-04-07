@@ -13,8 +13,6 @@ import { withState } from './states';
 //   return isAdmin ? <UserOutlined /> : <TeamOutlined />;
 // };
 
-const { Header, Content, Footer } = Layout;
-
 const HomePage = lazy(() => import('@/pages/home'));
 const UsersPage = lazy(() => import('@/pages/users'));
 const ListUsersPage = lazy(() => import('@/pages/users/List'));
@@ -27,12 +25,11 @@ export const App = withState(({ state: { authState, uiState } }) => {
   } = theme.useToken();
 
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <Layout>
       {isLogged && (
-        <Header
+        <Layout.Header
           style={{
             position: 'sticky',
             top: 0,
@@ -42,7 +39,6 @@ export const App = withState(({ state: { authState, uiState } }) => {
             alignItems: 'center',
           }}
         >
-          <div className="demo-logo" />
           <Menu
             theme="dark"
             mode="horizontal"
@@ -84,10 +80,10 @@ export const App = withState(({ state: { authState, uiState } }) => {
           <Button type="primary" onClick={() => uiState.changeTheme()}>
             Change theme
           </Button>
-        </Header>
+        </Layout.Header>
       )}
 
-      <Content style={{ padding: '0 48px' }}>
+      <Layout.Content style={{ padding: '0 48px' }}>
         <div
           style={{
             padding: 24,
@@ -133,10 +129,10 @@ export const App = withState(({ state: { authState, uiState } }) => {
             </Routes>
           </ErrorBoundary>
         </div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>
+      </Layout.Content>
+      <Layout.Footer style={{ textAlign: 'center' }}>
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
+      </Layout.Footer>
     </Layout>
   );
 });
