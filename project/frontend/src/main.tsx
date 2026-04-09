@@ -6,6 +6,7 @@ import { StateProvider } from './states';
 import en_GB from 'antd/locale/en_GB';
 import ru_RU from 'antd/locale/ru_RU';
 import { Observer } from 'mobx-react-lite';
+import { css, Global } from '@emotion/react';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
@@ -22,6 +23,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                     : theme.defaultAlgorithm,
               }}
             >
+              <Global
+                styles={css`
+                  * {
+                    padding: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                  }
+                `}
+              />
               <App />
             </ConfigProvider>
           )}

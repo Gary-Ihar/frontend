@@ -24,6 +24,7 @@
     "outDir": "./dist/",
     "alwaysStrict": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "forceConsistentCasingInFileNames": true,
     "strictBindCallApply": true,
     "strictPropertyInitialization": true,

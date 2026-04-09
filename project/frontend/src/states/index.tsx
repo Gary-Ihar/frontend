@@ -4,6 +4,7 @@ import {
   type ReactNode,
   type JSX,
   useMemo,
+  createElement,
 } from 'react';
 import { UsersState } from './users';
 import { AuthState } from './auth';
@@ -53,8 +54,9 @@ export function withState<T>(
 
   return function (props: T) {
     const state = useAppState();
+    const componentProps: WithStateProps & T = { state, ...props };
 
-    return <ObservedComponent state={state} {...props} />;
+    return createElement(ObservedComponent, componentProps);
   };
 }
 
@@ -67,6 +69,8 @@ export function withLocalState<P, S extends object>(
   return function (props: P) {
     const state = useMemo(() => new State(), []);
 
-    return <ObservedComponent state={state} {...props} />;
+    const componentProps: { state: S } & P = { state, ...props };
+
+    return createElement(ObservedComponent, componentProps);
   };
 }

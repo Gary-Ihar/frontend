@@ -54,7 +54,11 @@ export default defineConfig({
                     runtime: 'automatic',
                     development: isDev,
                     refresh: isDev,
+                    importSource: '@emotion/react',
                   },
+                },
+                experimental: {
+                  plugins: [['@swc/plugin-emotion', {}]],
                 },
               },
               env: { targets },

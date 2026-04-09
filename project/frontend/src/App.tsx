@@ -6,6 +6,7 @@ import { lazy, Suspense } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Button, Layout, Menu, theme } from 'antd';
 import { withState } from './states';
+import { style } from './style';
 // import { Avatar } from './components/Some';
 // import { TeamOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -82,53 +83,41 @@ export const App = withState(({ state: { authState, uiState } }) => {
           </Button>
         </Layout.Header>
       )}
+      <div className="test"></div>
+      <Layout.Content css={style.content(colorBgContainer, borderRadiusLG)}>
+        <ErrorBoundary fallback={'TADAAAAAAAAM!'}>
+          <Routes>
+            {isLogged ? (
+              <>
+                <Route path={`${ROUTES.users.index}/`} element={<UsersPage />}>
+                  <Route index element={<ListUsersPage />} />
+                  <Route path=":userId" element={<OneUserPage />} />
+                </Route>
 
-      <Layout.Content style={{ padding: '0 48px' }}>
-        <div
-          style={{
-            padding: 24,
-            minHeight: 380,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          <ErrorBoundary fallback={'TADAAAAAAAAM!'}>
-            <Routes>
-              {isLogged ? (
-                <>
-                  <Route
-                    path={`${ROUTES.users.index}/`}
-                    element={<UsersPage />}
-                  >
-                    <Route index element={<ListUsersPage />} />
-                    <Route path=":userId" element={<OneUserPage />} />
-                  </Route>
-
-                  <Route
-                    path={ROUTES.home}
-                    element={
-                      <Suspense>
-                        <HomePage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="*"
-                    element={<Navigate to={ROUTES.home} replace />}
-                  />
-                </>
-              ) : (
-                <>
-                  <Route path={ROUTES.login} element={<Login />} />
-                  <Route
-                    path="*"
-                    element={<Navigate to={ROUTES.login} replace />}
-                  />
-                </>
-              )}
-            </Routes>
-          </ErrorBoundary>
-        </div>
+                <Route
+                  path={ROUTES.home}
+                  element={
+                    <Suspense>
+                      <HomePage />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="*"
+                  element={<Navigate to={ROUTES.home} replace />}
+                />
+              </>
+            ) : (
+              <>
+                <Route path={ROUTES.login} element={<Login />} />
+                <Route
+                  path="*"
+                  element={<Navigate to={ROUTES.login} replace />}
+                />
+              </>
+            )}
+          </Routes>
+        </ErrorBoundary>
       </Layout.Content>
       <Layout.Footer style={{ textAlign: 'center' }}>
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
