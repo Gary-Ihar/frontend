@@ -521,7 +521,7 @@ const DATA = {
 };
 
 const setCustomTimeout = (cb) => {
-  const delays = [0, 500, 1000, 1500, 2000, 2500, 3000, 4000, 5000];
+  const delays = [0, 200, 400, 800, 1200, 1500, 2000];
   const delay = delays[Math.floor(Math.random() * delays.length)];
   return setTimeout(() => {
     cb?.();

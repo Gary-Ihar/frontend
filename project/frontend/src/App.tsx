@@ -15,9 +15,7 @@ import { style } from './style';
 // };
 
 const HomePage = lazy(() => import('@/pages/home'));
-const UsersPage = lazy(() => import('@/pages/users'));
 const ListUsersPage = lazy(() => import('@/pages/users/List'));
-const OneUserPage = lazy(() => import('@/pages/users/One'));
 
 export const App = withState(({ state: { authState, uiState } }) => {
   const { isLogged } = authState;
@@ -56,18 +54,9 @@ export const App = withState(({ state: { authState, uiState } }) => {
                 label: <NavLink to={ROUTES.home}>Home</NavLink>,
               },
               {
-                key: ROUTES.users.index,
+                key: ROUTES.users,
                 title: 'Home',
-                label: (
-                  <NavLink
-                    to={ROUTES.users.index}
-                    className={({ isActive, isPending }) =>
-                      isPending ? 'pending' : isActive ? 'active' : ''
-                    }
-                  >
-                    Users
-                  </NavLink>
-                ),
+                label: <NavLink to={ROUTES.users}>Users</NavLink>,
               },
               {
                 key: 'logout',
@@ -89,10 +78,7 @@ export const App = withState(({ state: { authState, uiState } }) => {
           <Routes>
             {isLogged ? (
               <>
-                <Route path={`${ROUTES.users.index}/`} element={<UsersPage />}>
-                  <Route index element={<ListUsersPage />} />
-                  <Route path=":userId" element={<OneUserPage />} />
-                </Route>
+                <Route path={ROUTES.users} element={<ListUsersPage />} />
 
                 <Route
                   path={ROUTES.home}
