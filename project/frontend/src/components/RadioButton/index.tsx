@@ -56,7 +56,6 @@ RadioButton.Item = function Item(props: ItemProps) {
       });
     }
   }, [context, context?.currentValue, props.value]);
-  console.log(context, props);
 
   return (
     <Col>

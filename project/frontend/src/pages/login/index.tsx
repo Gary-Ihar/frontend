@@ -13,6 +13,7 @@ export const Login = withState(({ state: { authState } }) => {
   return (
     <div>
       <input
+        data-test-id="heading"
         value={login}
         onChange={({ target: { value } }) => setLogin(value)}
         placeholder="Input login"
